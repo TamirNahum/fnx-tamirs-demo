@@ -21,6 +21,7 @@ export class GitHubService {
 
     this.toggling.add(repoId);
 
+    //req tap do the same operation
     var req$ = !repo.bookmarked
       ? this.addBookmark(repo)
       : this.removeBookmark(repoId);
@@ -55,8 +56,8 @@ export class GitHubService {
   }
 
   removeBookmark(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/bookmark`,{
-        params: { id },
-      });
+    return this.http.delete(`${this.apiUrl}/bookmark`, {
+      params: { id },
+    });
   }
 }

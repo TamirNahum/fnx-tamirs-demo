@@ -18,7 +18,6 @@ export class RepoListComponent {
 
   toggleBookmark(repo: GitHubRepository) {
     this.gitHubSrv.toggleBookmark$(repo)?.subscribe((res) => {
-      repo;
     });
   }
 }

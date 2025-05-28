@@ -9,6 +9,6 @@ import { AuthService } from './services/auth.service';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  public authService:AuthService = inject(AuthService);
+  public authService:AuthService = inject(AuthService);//first call for login on ctor
 
 }

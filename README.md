@@ -6,6 +6,8 @@ This is a demo project consisting of a **server** and a **client** application.
 The repository contains both the backend server (.Net 9)
 and the frontend client(Angular v19),
 demonstrating full-stack functionality using .
+(assinment attached)
+
 ![alt text](image.png)
 
 ## Project Structure
@@ -54,7 +56,14 @@ npm i
 ng serve -o 
 ```
 #### Both Server and Client are ready!!
+### Technologies Used
+* Frontend: Angular 18+, TypeScript, HTML, SCSS, Bootstrap
 
+* Backend: .NET Core 9 (Web API), C#,JWT
+
+* Build tools: Node.js, npm
+
+* Other: Git, REST APIs
 
 ## Contributing
 
