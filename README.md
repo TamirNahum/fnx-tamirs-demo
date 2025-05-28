@@ -6,6 +6,7 @@ This is a demo project consisting of a **server** and a **client** application.
 The repository contains both the backend server (.Net 9)
 and the frontend client(Angular v19),
 demonstrating full-stack functionality using .
+![alt text](image.png)
 
 ## Project Structure
 

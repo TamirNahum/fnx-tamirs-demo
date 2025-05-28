@@ -3,7 +3,7 @@
     <div class="row">
       @for (repo of repositories(); track $index) {
       <div class="col-md-4">
-        <div class="card mb-4 shadow-sm">
+        <div class="card mb-4 shadow-sm" style="cursor: pointer" (click)="openRepo(repo)">
           <img
             [src]="repo.owner?.avatar_url"
             class="card-img-top"
@@ -21,8 +21,8 @@
                     ? 'bi-bookmark-fill text-primary'
                     : 'bi-bookmark text-muted'
                 "
-                (click)="toggleBookmark(repo)"
-                style="cursor: pointer"
+                (click)="toggleBookmark(repo);$event.stopPropagation()"
+
               ></i>
             </h5>
             <p class="card-text">{{ repo.description }}</p>
