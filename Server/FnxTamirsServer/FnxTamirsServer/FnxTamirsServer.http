@@ -1,6 +1,4 @@
-@FnxTamirsServer_HostAddress = http://localhost:5020
+@FnxTamirsServer_HostAddress = http://localhost:7270
 
-GET {{FnxTamirsServer_HostAddress}}/weatherforecast/
-Accept: application/json
 
 ###
