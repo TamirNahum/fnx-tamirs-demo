@@ -1,0 +1,31 @@
+@if(isLoading){
+<div class="position-absolute top-0 start-0 w-100">
+  <div class="progress" style="height: 3px">
+    <div
+      class="progress-bar progress-bar-striped progress-bar-animated bg-primary"
+      style="width: 100%"
+    ></div>
+  </div>
+</div>
+}
+
+<div class="container mt-5">
+  <div class="card p-4 shadow-lg border-0">
+    <div class="text-center mb-4">
+      <h2 class="fw-bold">Explore GitHub Repositories</h2>
+      <p class="text-muted">
+        Find, view, and bookmark GitHub Repositories
+      </p>
+    </div>
+
+    <div class="input-group mb-4">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search repositories..."
+        [formControl]="searchControl"
+      />
+    </div>
+    <repo-list [repositories]="repositories$ | async"></repo-list>
+  </div>
+</div>

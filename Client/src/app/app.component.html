@@ -1,0 +1,39 @@
+
+@if (this.authService.currentUser) {
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand"  routerLink="/search">Fnx Demo</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page"  routerLink="/search">Search</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" routerLink="/bookmarks">Bookmarks</a>
+        </li>
+      </ul>
+      <span class="navbar-text">
+      </span>
+    </div>
+  </div>
+</nav>
+
+<router-outlet> </router-outlet>
+}@else {
+  <div
+     class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column align-items-center justify-content-center bg-white bg-opacity-75 text-center rounded shadow">
+
+  <div class="spinner-border text-primary mb-3" role="status" style="width: 3rem; height: 3rem;">
+    <span class="visually-hidden">Logging in...</span>
+  </div>
+
+  <div>
+    <p class="mb-0 fw-semibold fs-5 text-primary">Logging you in…</p>
+    <small class="text-muted">Just a moment, we're checking your credentials.</small>
+  </div>
+
+</div>
+}
