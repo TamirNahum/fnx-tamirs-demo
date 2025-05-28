@@ -17,30 +17,30 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(options =>
 {
-  options.AddPolicy(name: MyAllowSpecificOrigins,
-                    policy =>
-                    {
-                      policy.WithOrigins("http://localhost:4200",
-                                            "http://localhost:4200")
-                      .AllowAnyHeader()
-                      .AllowAnyMethod()
-                      .AllowCredentials();
-                    });
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy =>
+                      {
+                          policy.WithOrigins("http://localhost:4200",
+                                              "http://localhost:4200")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowCredentials();
+                      });
 });
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
-      options.TokenValidationParameters = new TokenValidationParameters
-      {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-        ValidIssuer = builder.Configuration["Jwt:Issuer"],
-        ValidAudience = builder.Configuration["Jwt:Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(
-              Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
-      };
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+        };
     });
 
 // Add services to the container.
@@ -55,40 +55,40 @@ builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
+#region minimal api  mapping
 app.MapPost("/login", async (LoginRequest user, IAuthService service) =>
 {
-  var token = await service.GenerateToken(user.Username);
-  return new LoginResponse()
-  {
-    Token = token,
-    Username = user.Username
-  };
+    var token = await service.GenerateToken(user.Username);
+    return new LoginResponse()
+    {
+        Token = token,
+        Username = user.Username
+    };
 });
-
 app.MapGet("/searchrepo", async (string repoName, IRepoLogic repoLogic) =>
 {
-  return await repoLogic.GetGitHubRepoAsync(repoName);
+    return await repoLogic.GetGitHubRepoAsync(repoName);
 }).RequireAuthorization();
 
 app.MapGet("/bookmarks", async (ISessionService service) =>
 {
-  return await service.GetBookmarks();
+    return await service.GetBookmarks();
 }).RequireAuthorization();
 
 app.MapPost("/bookmark", async (GitHubRepository repo, ISessionService service) =>
 {
-  return  service.AddBookmark(repo);
+    return service.AddBookmark(repo);
 }).RequireAuthorization();
 
 app.MapDelete("/bookmark", async (long id, ISessionService service) =>
 {
-  return service.RemoveBookmark(id);
+    return service.RemoveBookmark(id);
 }).RequireAuthorization();
-
+#endregion
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-  app.MapOpenApi();
+    app.MapOpenApi();
 }
 app.UseHttpsRedirection();
 
